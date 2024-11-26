@@ -1,6 +1,7 @@
 
 import { IsString, IsInt, Min, Max, IsUrl, Length, IsOptional } from 'class-validator';
 
+
 export class UpdateTravelDto {
   @IsString()
   @IsOptional()
