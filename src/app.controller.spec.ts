@@ -1,7 +1,7 @@
-// src/travels/travels.spec.ts
+
 import { Test, TestingModule } from '@nestjs/testing';
-import { TravelsService } from './app.service';
 import { TravelsController } from './app.controller';
+import { TravelsService } from './app.service';
 import { CreateTravelDto } from './create-travel.dto';
 
 describe('TravelsController', () => {
@@ -20,10 +20,10 @@ describe('TravelsController', () => {
 
   it('should create a travel', () => {
     const createTravelDto: CreateTravelDto = {
-      destination: 'Budapest, Hungary',
-      description: 'A great place to visit with a lot of history.',
-      imageUrl: 'http://example.com/budapest.jpg',
-      price: 50000,
+      destination: 'Thailand',
+      description: 'A beautiful tropical destination.',
+      imgUrl: 'http://example.com/thailand.jpg',
+      price: 350_000,
       discount: 10,
     };
 
@@ -38,11 +38,11 @@ describe('TravelsController', () => {
 
   it('should return one travel by ID', () => {
     const travel = service.create({
-      destination: 'Paris, France',
-      description: 'City of Lights!',
-      imageUrl: 'http://example.com/paris.jpg',
-      price: 70000,
-      discount: 20,
+      destination: 'Paris',
+      description: 'The city of love.',
+      imgUrl: 'http://example.com/paris.jpg',
+      price: 450_000,
+      discount: 15,
     });
     expect(controller.findOne(travel.id)).toEqual(travel);
   });

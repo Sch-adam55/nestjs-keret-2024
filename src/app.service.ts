@@ -1,46 +1,34 @@
 
 import { Injectable } from '@nestjs/common';
-import { CreateTravelDto } from './create-travel.dto';
-import { UpdateTravelDto } from './update-travel.dto';
+import { TravelData, TravelDataWithoutId } from './travel.interface';
 import { Travel } from './entities/travel.entity';
 
 @Injectable()
 export class TravelsService {
-  private travels: Travel[] = [];
-  private idCounter = 1;
+  private travels: Travel;
 
-  create(createTravelDto: CreateTravelDto): Travel {
-    const newTravel: Travel = {
-      id: this.idCounter++,
-      ...createTravelDto,
-    };
-    this.travels.push(newTravel);
-    return newTravel;
+  constructor() {
+    this.travels = new Travel();
   }
 
-  findAll(): Travel[] {
-    return this.travels;
+  create(createTravelDto: TravelDataWithoutId): TravelData {
+    return this.travels.add(createTravelDto);
   }
 
-  findOne(id: number): Travel {
-    return this.travels.find(travel => travel.id === id);
+  findAll(): TravelData[] {
+    return this.travels.getAll();
   }
 
-  update(id: number, updateTravelDto: UpdateTravelDto): Travel {
-    const travel = this.findOne(id);
-    if (!travel) {
-      return null;
-    }
-    Object.assign(travel, updateTravelDto);
-    return travel;
+  findOne(id: number): TravelData | undefined {
+    return this.travels.getById(id);
+  }
+
+  update(id: number, updateTravelDto: TravelDataWithoutId): TravelData {
+    return this.travels.replace(id, updateTravelDto);
   }
 
   remove(id: number): boolean {
-    const index = this.travels.findIndex(travel => travel.id === id);
-    if (index === -1) {
-      return false;
-    }
-    this.travels.splice(index, 1);
-    return true;
+    return this.travels.remove(id);
   }
 }
+

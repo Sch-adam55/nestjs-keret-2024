@@ -14,7 +14,7 @@ export class UpdateTravelDto {
 
   @IsUrl()
   @IsOptional()
-  imageUrl?: string;
+  imgUrl?: string;
 
   @IsInt()
   @IsOptional()
@@ -27,3 +27,4 @@ export class UpdateTravelDto {
   @Max(50)
   discount?: number;
 }
+

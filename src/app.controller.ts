@@ -14,7 +14,7 @@ export class TravelsController {
     return this.travelsService.findAll();
   }
 
-  @Get(':id')
+  @Get('/travels/:id')
   findOne(@Param('id') id: number): Travel {
     return this.travelsService.findOne(id);
   }
@@ -24,12 +24,12 @@ export class TravelsController {
     return this.travelsService.create(createTravelDto);
   }
 
-  @Patch(':id')
+  @Patch('/travels:id')
   update(@Param('id') id: number, @Body() updateTravelDto: UpdateTravelDto): Travel {
     return this.travelsService.update(id, updateTravelDto);
   }
 
-  @Delete(':id')
+  @Delete('/travels:id')
   remove(@Param('id') id: number): boolean {
     return this.travelsService.remove(id);
   }

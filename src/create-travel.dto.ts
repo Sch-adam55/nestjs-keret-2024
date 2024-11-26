@@ -1,5 +1,5 @@
 
-import { IsString, IsInt, Min, Max, IsUrl, Length, IsOptional } from 'class-validator';
+import { IsString, IsInt, Min, Max, IsUrl, Length } from 'class-validator';
 
 export class CreateTravelDto {
   @IsString()
@@ -11,7 +11,7 @@ export class CreateTravelDto {
   description: string;
 
   @IsUrl()
-  imageUrl: string;
+  imgUrl: string;
 
   @IsInt()
   @Min(1)
@@ -20,5 +20,6 @@ export class CreateTravelDto {
   @IsInt()
   @Min(0)
   @Max(50)
-  discount: number = 0;  
+  discount: number = 0;
 }
+
